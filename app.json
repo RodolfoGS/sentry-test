@@ -1,0 +1,12 @@
+{
+  "name": "SentryTest",
+  "displayName": "SentryTest",
+  "expo": {
+    "name": "SentryTest",
+    "slug": "SentryTest",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
