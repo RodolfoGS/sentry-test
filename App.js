@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import * as Updates from 'expo-updates';
 import * as Sentry from 'sentry-expo';
 
 Sentry.init({
@@ -11,10 +12,22 @@ Sentry.init({
 });
 
 export default function App() {
+
+  handleCrash = () => {
+    throw new Error('Test Error');
+  }
+
+  handleForceUpdate = async () => {
+    await Updates.fetchUpdateAsync();
+    await Updates.reloadAsync();
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
+      <Button onPress={handleCrash} title="Crash Now" />
+      <Text>Release: {Updates.manifest.revisionId}</Text>
+      <Button onPress={handleForceUpdate} title="Force Update" />
     </View>
   );
 }
